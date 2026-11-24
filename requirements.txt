@@ -1,0 +1,7 @@
+# PHANTOM — Core Project Dependencies
+
+# Testing
+pytest>=8.0.0
+
+# Type hinting & data models (will be expanded in Module 01/02)
+pydantic>=2.0.0
