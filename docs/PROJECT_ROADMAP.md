@@ -31,9 +31,10 @@ This document tracks all 6 functional modules and supporting phases, showing dep
 - [ ] Make initial commit (`feat: initialize project skeleton and tracking suite`).
 
 ### Module 01: RECON (Asset Discovery)
-- [ ] Socket basics & TCP 3-way handshake deep dive.
-- [ ] Single-port TCP connect scanner on localhost loopback.
-- [ ] Range scanning and timeout handling.
+- [x] Socket basics & TCP 3-way handshake deep dive.
+- [x] Single-port TCP connect scanner on localhost loopback.
+- [x] Multi-port list scanning and timeout/error handling (`prober.py`).
+- [ ] Automated unit tests (`pytest`) for `prober.py`.
 - [ ] CIDR subnet parsing and IP validation (`ipaddress` module).
 - [ ] Concurrency / multithreaded scanning.
 - [ ] Scope allowlisting and security guardrails.
