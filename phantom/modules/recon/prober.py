@@ -1,5 +1,7 @@
 import socket
 
+from phantom.core.scope import UnauthorizedTargetError, is_authorized_target
+
 
 def is_port_open(host: str, port: int, timeout: float = 1.0) -> bool:
     """Check whether a single TCP port is open on the target host."""
@@ -11,8 +13,18 @@ def is_port_open(host: str, port: int, timeout: float = 1.0) -> bool:
         return False
 
 
-def scan_ports(host: str, ports: list[int], timeout: float = 1.0) -> list[int]:
-    """Scan a list of TCP ports on host and return the ones that are open."""
+def scan_ports(
+    host: str,
+    ports: list[int],
+    timeout: float = 1.0,
+    allow_public: bool = False,
+) -> list[int]:
+    """Scan a list of TCP ports on an authorized host and return open ports."""
+    if not is_authorized_target(host, allow_public=allow_public):
+        raise UnauthorizedTargetError(
+            f"Target '{host}' is outside authorized local/private scope."
+        )
+
     open_ports: list[int] = []
     for port in ports:
         if is_port_open(host, port, timeout):

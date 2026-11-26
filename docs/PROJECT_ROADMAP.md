@@ -34,7 +34,7 @@ This document tracks all 6 functional modules and supporting phases, showing dep
 - [x] Socket basics & TCP 3-way handshake deep dive.
 - [x] Single-port TCP connect scanner on localhost loopback.
 - [x] Multi-port list scanning and timeout/error handling (`prober.py`).
-- [ ] Automated unit tests (`pytest`) for `prober.py`.
+- [x] Automated unit tests (`pytest`) for `prober.py`.
+- [x] Scope allowlisting and security guardrails (`phantom/core/scope.py`).
 - [ ] CIDR subnet parsing and IP validation (`ipaddress` module).
 - [ ] Concurrency / multithreaded scanning.
-- [ ] Scope allowlisting and security guardrails.

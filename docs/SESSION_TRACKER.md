@@ -43,3 +43,19 @@ This document records every daily 60-minute development session, evaluating prog
 * **Session Evaluation:** 🟢 **GREEN — CONTINUE**
 * **Next Session Objective:**
   - **Day 3: Automated Testing (`pytest`) & Input Validation / Scope Guardrails** (Writing unit tests for `prober.py` and blocking unauthorized public IP scans).
+
+---
+
+## Session 03 — 2026-11-26
+* **Objective:** Install `pytest`, build reproducible unit tests using temporary local TCP servers, and implement target authorization guardrails (`ipaddress`).
+* **Delivered Today:**
+  - Installed `pytest 9.2.0` inside `.venv`.
+  - Created `tests/unit/test_prober.py` with reproducible dummy-server socket tests.
+  - Built `phantom/core/scope.py` (`is_authorized_target`, `UnauthorizedTargetError`) using Python's `ipaddress` module.
+  - Enforced scope validation inside `scan_ports()` so public IPs are blocked by default.
+  - Created `tests/unit/test_scope.py` covering loopback, private, public, explicit override, and invalid hosts.
+* **Test Results:**
+  - `.\.venv\Scripts\python.exe -m pytest -v` **PASSED**: **9 passed in 1.28s**.
+* **Session Evaluation:** 🟢 **GREEN — CONTINUE**
+* **Next Session Objective:**
+  - **Day 4: CIDR Subnet Parsing & Multithreaded Port Scanning** (Scanning entire IP ranges like `192.168.1.0/24` and speeding up scans with `ThreadPoolExecutor`).

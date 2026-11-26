@@ -45,3 +45,17 @@ A persistent record of cybersecurity concepts, software engineering principles, 
 * Audited local listening ports with `netstat -an`.
 * Ran live Python `socket` probes against `127.0.0.1:445` and `127.0.0.1:59999`.
 * Triggered a `socket.gaierror` traceback and resolved it in `phantom/modules/recon/prober.py`.
+
+---
+
+## Entry 03 — 2026-11-26: Automated Testing (`pytest`) & Security Guardrails
+
+### 1. Concepts Learned
+* **Automated Unit Testing (`pytest`):** Writing `test_*` functions with `assert` statements so code correctness is verified automatically in ~1 second.
+* **Reproducible Socket Tests:** Binding a temporary dummy server to port `0` (`server.bind(("127.0.0.1", 0))`) lets the OS pick a free port dynamically, ensuring tests pass on any OS without relying on hardcoded open ports like `445`.
+* **Target Scope Guardrails (`ipaddress`):** Using `ipaddress.ip_address()` to distinguish loopback/private IPs (`is_loopback`, `is_private`) from public internet IPs, raising `UnauthorizedTargetError` before any unauthorized scan runs.
+
+### 2. Practical Exercises Completed
+* Installed `pytest` into `.venv` and opened the `phantom` workspace in VS Code.
+* Wrote `tests/unit/test_prober.py` and ran `pytest -v`.
+* Tested `ipaddress` classification on `127.0.0.1` vs `8.8.8.8` and verified all 9 unit tests pass.
