@@ -74,5 +74,6 @@ phantom/
 
 ## 5. Development Status
 
-* Currently in **Day 1: Environment & Foundation Setup**.
+* **Completed:** Day 3 — Module 01 (`RECON`) TCP connect prober, target scope guardrails (`phantom/core/scope.py`), and `pytest` unit test suite (9/9 passing).
+* **Next Up:** Day 4 — CIDR subnet parsing and multithreaded port scanning.
 * Follows a strict **60-Minute Daily Engineering Sprint** and **Stop/Continue (Green/Yellow/Red)** validation system.
