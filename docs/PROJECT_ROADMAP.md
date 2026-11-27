@@ -36,5 +36,6 @@ This document tracks all 6 functional modules and supporting phases, showing dep
 - [x] Multi-port list scanning and timeout/error handling (`prober.py`).
 - [x] Automated unit tests (`pytest`) for `prober.py`.
 - [x] Scope allowlisting and security guardrails (`phantom/core/scope.py`).
-- [ ] CIDR subnet parsing and IP validation (`ipaddress` module).
-- [ ] Concurrency / multithreaded scanning.
+- [x] CIDR subnet parsing and IP validation (`expand_targets`).
+- [x] Concurrency / multithreaded scanning (`ThreadPoolExecutor`, 9.5x speedup).
+- [ ] Structured scan results & CLI runner for RECON.

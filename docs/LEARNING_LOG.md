@@ -59,3 +59,16 @@ A persistent record of cybersecurity concepts, software engineering principles, 
 * Installed `pytest` into `.venv` and opened the `phantom` workspace in VS Code.
 * Wrote `tests/unit/test_prober.py` and ran `pytest -v`.
 * Tested `ipaddress` classification on `127.0.0.1` vs `8.8.8.8` and verified all 9 unit tests pass.
+
+---
+
+## Entry 04 — 2026-11-27: CIDR Subnets & Multithreaded Port Scanning
+
+### 1. Concepts Learned
+* **CIDR Notation (`/24`, `/29`, `/32`):** Compact way to represent IP ranges. `ipaddress.ip_network().hosts()` generates usable host IPs while skipping the Network ID and Broadcast Address.
+* **Concurrency (`ThreadPoolExecutor`):** Running multiple I/O-bound socket probes in parallel instead of sequentially. Capping `max_workers` prevents flooding the network or exhausting OS resources.
+
+### 2. Practical Exercises Completed
+* Expanded `192.168.1.0/29` into 6 usable IPs in Python.
+* Benchmarked 10-port scan speed before (`5.16s`) and after (`0.54s`) adding `ThreadPoolExecutor` (~9.5x speedup).
+* Verified 11/11 unit tests passing in `pytest`.

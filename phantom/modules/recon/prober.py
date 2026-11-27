@@ -1,3 +1,4 @@
+from concurrent.futures import ThreadPoolExecutor
 import socket
 
 from phantom.core.scope import UnauthorizedTargetError, is_authorized_target
@@ -18,18 +19,22 @@ def scan_ports(
     ports: list[int],
     timeout: float = 1.0,
     allow_public: bool = False,
+    max_workers: int = 20,
 ) -> list[int]:
-    """Scan a list of TCP ports on an authorized host and return open ports."""
+    """Scan a list of TCP ports concurrently on an authorized host."""
     if not is_authorized_target(host, allow_public=allow_public):
         raise UnauthorizedTargetError(
             f"Target '{host}' is outside authorized local/private scope."
         )
 
-    open_ports: list[int] = []
-    for port in ports:
-        if is_port_open(host, port, timeout):
-            open_ports.append(port)
-    return open_ports
+    if not ports:
+        return []
+
+    worker_count = max(1, min(max_workers, len(ports)))
+    with ThreadPoolExecutor(max_workers=worker_count) as executor:
+        results = executor.map(lambda p: (p, is_port_open(host, p, timeout)), ports)
+
+    return sorted(port for port, is_open in results if is_open)
 
 
 if __name__ == "__main__":
